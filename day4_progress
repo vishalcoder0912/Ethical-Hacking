@@ -1,0 +1,302 @@
+┌──(root㉿kali)-[~]
+└─# hydra -l msfadmin -p pass.txt ftp://192.168.1.5
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-01-26 09:19:16
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ftp://192.168.1.5:21/
+
+^CThe session file ./hydra.restore was written. Type "hydra -R" to resume session.
+                                                                             
+┌──(root㉿kali)-[~]
+└─# dnsenum imsnoida.com
+dnsenum VERSION:1.3.1
+
+-----   imsnoida.com   -----
+
+
+Host's addresses:
+__________________
+
+imsnoida.com.                            600      IN    A        15.197.240.20
+
+                                                                             
+Wildcard detection using: cdgqhbpthwav                                       
+_______________________________________                                      
+                                                                             
+cdgqhbpthwav.imsnoida.com.               600      IN    A        15.197.240.20
+
+                                                                             
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                                 
+                                                                             
+ Wildcards detected, all subdomains will point to the same IP address        
+ Omitting results containing 15.197.240.20.                                  
+ Maybe you are using OpenDNS servers.                                        
+                                                                             
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                                 
+                                                                             
+                                                                             
+Name Servers:                                                                
+______________                                                               
+                                                                             
+ imsnoida.com NS record query failed: NOERROR                                
+                                                                             
+┌──(root㉿kali)-[~]
+└─# dnsrecon imsnoida.com
+usage: dnsrecon [-h] [-d DOMAIN] [-iL INPUT_LIST]
+                [-n NS_SERVER] [-r RANGE]
+                [-D DICTIONARY] [-f] [-a] [-s] [-b]
+                [-y] [-k] [-w] [-z]
+                [--threads THREADS]
+                [--lifetime LIFETIME]
+                [--loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                [--tcp] [--db DB] [-x XML] [-c CSV]
+                [-j JSON] [--iw]
+                [--disable_check_nxdomain]
+                [--disable_check_recursion]
+                [--disable_check_bindversion] [-V]
+                [-v] [-t TYPE]
+dnsrecon: error: unrecognized arguments: imsnoida.com
+                                                        
+┌──(root㉿kali)-[~]
+└─# dnsrecon -d imsnoida.com
+2026-01-26T09:24:06.871168-0500 INFO Starting enumeration for domain: imsnoida.com
+2026-01-26T09:24:06.871912-0500 INFO std: Performing General Enumeration against: imsnoida.com...
+2026-01-26T09:24:07.451724-0500 ERROR No answer for DNSSEC query for imsnoida.com
+2026-01-26T09:24:07.747791-0500 INFO     SOA ns1.verification-hold.suspended-domain.com 127.0.0.1
+2026-01-26T09:24:08.627299-0500 INFO     A imsnoida.com 15.197.240.20
+2026-01-26T09:24:13.337625-0500 INFO Enumerating SRV Records
+2026-01-26T09:24:22.773690-0500 ERROR No SRV Records Found for imsnoida.com
+2026-01-26T09:24:22.774051-0500 INFO Completed enumeration for domain: imsnoida.com
+
+                                                        
+┌──(root㉿kali)-[~]
+└─# nikto -h imsnoida.com
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          15.197.240.20
++ Target Hostname:    imsnoida.com
++ Target Port:        80
++ Start Time:         2026-01-26 09:36:31 (GMT-5)
+---------------------------------------------------------------------------
++ Server: No banner retrieved
++ /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ No CGI Directories found (use '-C all' to force check all possible dirs)
+^C                                                                  
+┌──(root㉿kali)-[~]
+└─# cewl imsnoida.com -w word.txt
+CeWL 6.2.1 (More Fixes) Robin Wood (robin@digi.ninja) (https://digi.ninja/)
+                                                                  
+┌──(root㉿kali)-[~]
+└─# setoolkit 
+[-] New set.config.py file generated on: 2026-01-26 09:40:34.436553
+[-] Verifying configuration update...
+[*] Update verified, config timestamp is: 2026-01-26 09:40:34.436553
+[*] SET is using the new config, no need to restart
+Copyright 2020, The Social-Engineer Toolkit (SET) by TrustedSec, LLC
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    * Neither the name of Social-Engineer Toolkit nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The above licensing was taken from the BSD licensing and is applied to Social-Engineer Toolkit as well.
+
+Note that the Social-Engineer Toolkit is provided as is, and is a royalty free open-source application.
+
+Feel free to modify, use, change, market, do whatever you want with it as long as you give the appropriate credit where credit is due (which means giving the authors the credit they deserve for writing it).
+
+Also note that by using this software, if you ever see the creator of SET in a bar, you should (optional) give him a hug and should (optional) buy him a beer (or bourbon - hopefully bourbon). Author has the option to refuse the hug (most likely will never happen) or the beer or bourbon (also most likely will never happen). Also by using this tool (these are all optional of course!), you should try to make this industry better, try to stay positive, try to help others, try to learn from one another, try stay out of drama, try offer free hugs when possible (and make sure recipient agrees to mutual hug), and try to do everything you can to be awesome.
+The Social-Engineer Toolkit is designed purely for good and not evil. If you are planning on using this tool for malicious purposes that are not authorized by the company you are performing assessments for, you are violating the terms of service and license of this toolset. By hitting yes (only one time), you agree to the terms of service and that you will only use this tool for lawful purposes only.                                                           
+
+                                                                  
+Do you agree to the terms of service [y/n]: n                     
+[!] Exiting the Social-Engineer Toolkit, have a nice day.         
+                                                                  
+┌──(root㉿kali)-[~]
+└─# msfconsole
+Metasploit tip: Use the edit command to open the currently active module 
+in your editor
+                                                  
+  +-------------------------------------------------------+
+  |  METASPLOIT by Rapid7                                 |       
+  +---------------------------+---------------------------+       
+  |      __________________   |                           |       
+  |  ==c(______(o(______(_()  | |""""""""""""|======[***  |       
+  |             )=\           | |  EXPLOIT   \            |       
+  |            // \\          | |_____________\_______    |       
+  |           //   \\         | |==[msf >]============\   |       
+  |          //     \\        | |______________________\  |       
+  |         // RECON \\       | \(@)(@)(@)(@)(@)(@)(@)/   |       
+  |        //         \\      |  *********************    |       
+  +---------------------------+---------------------------+       
+  |      o O o                |        \'\/\/\/'/         |       
+  |              o O          |         )======(          |       
+  |                 o         |       .'  LOOT  '.        |       
+  | |^^^^^^^^^^^^^^|l___      |      /    _||__   \       |       
+  | |    PAYLOAD     |""\___, |     /    (_||_     \      |       
+  | |________________|__|)__| |    |     __||_)     |     |       
+  | |(@)(@)"""**|(@)(@)**|(@) |    "       ||       "     |       
+  |  = = = = = = = = = = = =  |     '--------------'      |       
+  +---------------------------+---------------------------+       
+
+
+       =[ metasploit v6.4.99-dev                                ]
++ -- --=[ 2,572 exploits - 1,317 auxiliary - 1,680 payloads     ]
++ -- --=[ 432 post - 49 encoders - 13 nops - 9 evasion          ]
+
+Metasploit Documentation: https://docs.metasploit.com/
+The Metasploit Framework is a Rapid7 Open Source Project
+
+msf > systemctl status postgresql
+[*] exec: systemctl status postgresql
+
+○ postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/usr/lib/systemd/system/postgresql.service; >
+     Active: inactive (dead)
+Interrupt: use the 'exit' command to quit
+msf > systemctl start postgresql
+[*] exec: systemctl start postgresql
+
+msf > systemctl stop postgresql
+[*] exec: systemctl stop postgresql
+
+msf > db_status
+[*] postgresql selected, no connection
+msf > db init
+[-] Unknown command: db. Run the help command for more details.
+msf > msfdb init
+[*] exec: msfdb init
+
+[+] Starting database
+
+[+] Creating database user 'msf'
+[+] Creating databases 'msf'
+[+] Creating databases 'msf_test'
+[+] Creating configuration file '/usr/share/metasploit-framework/config/database.yml'
+[+] Creating initial database schema
+Overriding user environment variable 'OPENSSL_CONF' to enable legacy functions.
+rake aborted!
+ArgumentError: Missing `secret_key_base` for 'production' environment, set this string with `bin/rails credentials:edit` (ArgumentError)
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application/configuration.rb:521:in `secret_key_base='
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application/configuration.rb:503:in `secret_key_base'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application.rb:473:in `secret_key_base'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application.rb:205:in `block in message_verifiers'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/message_verifiers.rb:134:in `build'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/messages/rotation_coordinator.rb:85:in `block in build_with_rotations'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/messages/rotation_coordinator.rb:85:in `map'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/messages/rotation_coordinator.rb:85:in `build_with_rotations'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/messages/rotation_coordinator.rb:19:in `[]'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application.rb:232:in `message_verifier'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activerecord-7.2.3/lib/active_record/railtie.rb:355:in `block (3 levels) in <class:Railtie>'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:97:in `class_eval'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:97:in `block in execute_hook'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:87:in `with_execution_control'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:92:in `execute_hook'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:62:in `block in on_load'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:61:in `each'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:61:in `on_load'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activerecord-7.2.3/lib/active_record/railtie.rb:354:in `block (2 levels) in <class:Railtie>'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:94:in `block in execute_hook'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:87:in `with_execution_control'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:92:in `execute_hook'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:78:in `block in run_load_hooks'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:77:in `each'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/activesupport-7.2.3/lib/active_support/lazy_load_hooks.rb:77:in `run_load_hooks'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application/finisher.rb:94:in `block in <module:Finisher>'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/initializable.rb:32:in `instance_exec'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/initializable.rb:32:in `run'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/initializable.rb:61:in `block in run_initializers'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:231:in `block in tsort_each'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:353:in `block (2 levels) in each_strongly_connected_component'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:434:in `each_strongly_connected_component_from'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:352:in `block in each_strongly_connected_component'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:350:in `each'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:350:in `call'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:350:in `each_strongly_connected_component'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:229:in `tsort_each'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/tsort-0.2.0/lib/tsort.rb:208:in `tsort_each'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/initializable.rb:60:in `run_initializers'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application.rb:435:in `initialize!'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/railtie.rb:226:in `public_send'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/railtie.rb:226:in `method_missing'
+/usr/share/metasploit-framework/config/environment.rb:4:in `<top (required)>'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/zeitwerk-2.7.3/lib/zeitwerk/core_ext/kernel.rb:34:in `require'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application.rb:411:in `require_environment!'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/railties-7.2.3/lib/rails/application.rb:562:in `block in run_tasks_blocks'
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/rake-13.3.1/exe/rake:27:in `<top (required)>'
+Tasks: TOP => db:migrate => db:load_config => environment
+(See full trace by running task with --trace)
+msf > 
+msf > Interrupt: use the 'exit' command to quit
+msf > exit
+                                                                  
+┌──(root㉿kali)-[~]
+└─# nmap 192.168.136.198 
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-26 10:05 EST
+Nmap scan report for 192.168.136.198
+Host is up (0.00060s latency).
+All 1000 scanned ports on 192.168.136.198 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+
+Nmap done: 1 IP address (1 host up) scanned in 5.30 seconds
+                                                                  
+┌──(root㉿kali)-[~]
+└─# nmap 192.168.137.198 -sV -O
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-26 10:06 EST
+Nmap scan report for 192.168.137.198
+Host is up (0.0019s latency).
+All 1000 scanned ports on 192.168.137.198 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: 3Com 4500G switch (92%), H3C Comware 5.20 (92%), Huawei VRP 8.100 (92%), Microsoft Windows Server 2003 SP1 (92%), Oracle Virtualbox Slirp NAT bridge (92%), QEMU user mode network gateway (92%), AXIS 2100 Network Camera (92%), D-Link DP-300U, DP-G310, or Hamlet HPS01UU print server (92%), HP Tru64 UNIX 5.1A (92%), Sanyo PLC-XU88 digital video projector (92%)
+No exact OS matches for host (test conditions non-ideal).
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 7.69 seconds
+                                                                  
+┌──(root㉿kali)-[~]
+└─# msfconsole
+Metasploit tip: Use the capture plugin to start multiple 
+authentication-capturing and poisoning services
+                                                  
+                                   ___          ____
+                               ,-""   `.      < HONK >
+                             ,'  _   e )`-._ /  ----              
+                            /  ,' `-._<.===-'                     
+                           /  /                                   
+                          /  ;                                    
+              _          /   ;                                    
+ (`._    _.-"" ""--..__,'    |                                    
+ <_  `-""                     \                                   
+  <`-                          :                                  
+   (__   <__.                  ;                                  
+     `-.   '-.__.      _.'    /                                   
+        \      `-.__,-'    _,'                                    
+         `._    ,    /__,-'                                       
+            ""._\__,'< <____                                      
+                 | |  `----.`.                                    
+                 | |        \ `.                                  
+                 ; |___      \-``                                 
+                 \   --<                                          
+                  `.`.<                                           
+                    `-'                                           
+                                                                  
+                                                                  
+
+       =[ metasploit v6.4.99-dev                                ]
++ -- --=[ 2,572 exploits - 1,317 auxiliary - 1,683 payloads     ]
++ -- --=[ 433 post - 49 encoders - 13 nops - 9 evasion          ]
+
+Metasploit Documentation: https://docs.metasploit.com/
+The Metasploit Framework is a Rapid7 Open Source Project
+
+msf > workspace
+* default
+msf > 

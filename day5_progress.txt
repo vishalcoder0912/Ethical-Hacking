@@ -1,0 +1,337 @@
+┌──(root㉿kali)-[~]
+└─# msfconsole
+Metasploit tip: View all productivity tips with the tips command
+                                                  
+                                              `:oDFo:`                            
+                                           ./ymM0dayMmy/.                          
+                                        -+dHJ5aGFyZGVyIQ==+-                    
+                                    `:sm⏣~~Destroy.No.Data~~s:`                
+                                 -+h2~~Maintain.No.Persistence~~h+-              
+                             `:odNo2~~Above.All.Else.Do.No.Harm~~Ndo:`          
+                          ./etc/shadow.0days-Data'%20OR%201=1--.No.0MN8'/.      
+                       -++SecKCoin++e.AMd`       `.-://///+hbove.913.ElsMNh+-    
+                      -~/.ssh/id_rsa.Des-                  `htN01UserWroteMe!-  
+                      :dopeAW.No<nano>o                     :is:TЯiKC.sudo-.A:  
+                      :we're.all.alike'`                     The.PFYroy.No.D7:  
+                      :PLACEDRINKHERE!:                      yxp_cmdshell.Ab0:    
+                      :msf>exploit -j.                       :Ns.BOB&ALICEes7:                                                                            
+                      :---srwxrwx:-.`                        `MS146.52.No.Per:                                                                            
+                      :<script>.Ac816/                        sENbove3101.404:                                                                            
+                      :NT_AUTHORITY.Do                        `T:/shSYSTEM-.N:                                                                            
+                      :09.14.2011.raid                       /STFU|wall.No.Pr:                                                                            
+                      :hevnsntSurb025N.                      dNVRGOING2GIVUUP:                                                                            
+                      :#OUTHOUSE-  -s:                       /corykennedyData:                                                                            
+                      :$nmap -oS                              SSo.6178306Ence:                                                                            
+                      :Awsm.da:                            /shMTl#beats3o.No.:                                                                            
+                      :Ring0:                             `dDestRoyREXKC3ta/M:                                                                            
+                      :23d:                               sSETEC.ASTRONOMYist:                                                                            
+                       /-                        /yo-    .ence.N:(){ :|: & };:                                                                            
+                                                 `:Shall.We.Play.A.Game?tron/                                                                             
+                                                 ```-ooy.if1ghtf0r+ehUser5`                                                                               
+                                               ..th3.H1V3.U2VjRFNN.jMh+.`                                                                                 
+                                              `MjM~~WE.ARE.se~~MMjMs                                                                                      
+                                               +~KANSAS.CITY's~-`                                                                                         
+                                                J~HAKCERS~./.`                                                                                            
+                                                .esc:wq!:`                                                                                                
+                                                 +++ATH`                                                                                                  
+                                                  `                          
+                                                                             
+
+       =[ metasploit v6.4.99-dev                                ]
++ -- --=[ 2,572 exploits - 1,317 auxiliary - 1,683 payloads     ]
++ -- --=[ 433 post - 49 encoders - 13 nops - 9 evasion          ]
+
+Metasploit Documentation: https://docs.metasploit.com/
+The Metasploit Framework is a Rapid7 Open Source Project
+
+msf > workspace
+[-] Database not connected
+msf > msfdb init
+[*] exec: msfdb init
+
+[+] Starting database
+[i] The database appears to be already configured, skipping initialization
+msf > workspace 
+  w1
+  w2
+* default
+msf > workspace -d w1 w2
+[*] Deleted workspace: w1
+[*] Deleted workspace: w2
+msf > workspace
+* default
+msf > hosts
+
+Hosts
+=====
+
+address  mac  name  os_name  os_flavor  os_sp  purpose  info  comments
+-------  ---  ----  -------  ---------  -----  -------  ----  --------
+
+msf > db_name 192.168.174.160
+[-] Unknown command: db_name. Did you mean db_save? Run the help command for more details.
+msf > db_nmap 192.168.174.160
+[*] Nmap: Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-17 10:33 EST
+[*] Nmap: Nmap scan report for 192.168.174.160
+[*] Nmap: Host is up (0.0012s latency).
+[*] Nmap: All 1000 scanned ports on 192.168.174.160 are in ignored states.
+[*] Nmap: Not shown: 1000 filtered tcp ports (no-response)
+[*] Nmap: Nmap done: 1 IP address (1 host up) scanned in 6.63 seconds
+msf > host
+[*] exec: host
+
+Usage: host [-aCdilrTvVw] [-c class] [-N ndots] [-t type] [-W time]
+            [-R number] [-m flag] [-p port] hostname [server]
+       -a is equivalent to -v -t ANY
+       -A is like -a but omits RRSIG, NSEC, NSEC3
+       -c specifies query class for non-IN data
+       -C compares SOA records on authoritative nameservers
+       -d is equivalent to -v
+       -l lists all hosts in a domain, using AXFR
+       -m set memory debugging flag (trace|record|usage)
+       -N changes the number of dots allowed before root lookup is done
+       -p specifies the port on the server to query
+       -r disables recursive processing
+       -R specifies number of retries for UDP packets
+       -s a SERVFAIL response should stop query
+       -t specifies the query type
+       -T enables TCP/IP mode
+       -U enables UDP mode
+       -v enables verbose output
+       -V print version number and exit
+       -w specifies to wait forever for a reply
+       -W specifies how long to wait for a reply
+       -4 use IPv4 query transport only
+       -6 use IPv6 query transport only
+msf > hosts
+
+Hosts
+=====
+
+address   mac  name  os_name  os_flavor  os_sp  purpose  info  comments
+-------   ---  ----  -------  ---------  -----  -------  ----  --------
+192.168.
+174.160
+
+msf > db_nmap imsnoida.com
+[*] Nmap: Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-17 10:33 EST
+[*] Nmap: Nmap scan report for imsnoida.com (88.222.243.115)
+[*] Nmap: Host is up (0.0086s latency).
+[*] Nmap: Other addresses for imsnoida.com (not scanned): 147.79.69.39 2a02:4780:3c:d43e:9062:5855:550f:1dba 2a02:4780:20:879d:42fc:ee7f:c8c1:3789
+[*] Nmap: rDNS record for 88.222.243.115: 88-222-243-115.init.lt
+[*] Nmap: Not shown: 998 filtered tcp ports (no-response)
+[*] Nmap: PORT    STATE SERVICE
+[*] Nmap: 80/tcp  open  http
+[*] Nmap: 443/tcp open  https
+[*] Nmap: Nmap done: 1 IP address (1 host up) scanned in 6.78 seconds
+msf > db_nmap imsnoida.in
+[*] Nmap: Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-17 10:34 EST
+[*] Nmap: Nmap scan report for imsnoida.in (148.135.139.236)
+[*] Nmap: Host is up (0.015s latency).
+[*] Nmap: Other addresses for imsnoida.in (not scanned): 2a02:4780:11:1853:0:3742:791d:9
+[*] Nmap: Not shown: 996 filtered tcp ports (no-response)
+[*] Nmap: PORT     STATE SERVICE
+[*] Nmap: 21/tcp   open  ftp
+[*] Nmap: 80/tcp   open  http
+[*] Nmap: 443/tcp  open  https
+[*] Nmap: 3306/tcp open  mysql
+[*] Nmap: Nmap done: 1 IP address (1 host up) scanned in 7.10 seconds
+msf > nmap -sv -sc imsnoida.in
+[*] exec: nmap -sv -sc imsnoida.in
+
+Nmap 7.95 ( https://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL <inputfilename>: Input from list of hosts/networks
+  -iR <num hosts>: Choose random targets
+  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+  --excludefile <exclude_file>: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN, TCP ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers
+  --system-dns: Use OS's DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags <flags>: Customize TCP scan flags
+  -sI <zombie host[:probeport]>: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b <FTP relay host>: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p <port ranges>: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  --exclude-ports <port ranges>: Exclude the specified ports from scanning
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports sequentially - don't randomize
+  --top-ports <number>: Scan <number> most common ports
+  --port-ratio <ratio>: Scan ports more common than <ratio>
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=<Lua scripts>: <Lua scripts> is a comma separated list of
+           directories, script-files or script-categories
+  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=<Lua scripts>: Show help about scripts.
+           <Lua scripts> is a comma-separated list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take <time> are in seconds, or append 'ms' (milliseconds),
+  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+  -T<0-5>: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes
+  --min-parallelism/max-parallelism <numprobes>: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies
+      probe round trip time.
+  --max-retries <tries>: Caps number of port scan probe retransmissions.
+  --host-timeout <time>: Give up on target after this long
+  --scan-delay/--max-scan-delay <time>: Adjust delay between probes
+  --min-rate <number>: Send packets no slower than <number> per second
+  --max-rate <number>: Send packets no faster than <number> per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu <val>: fragment packets (optionally w/given MTU)
+  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys
+  -S <IP_Address>: Spoof source address
+  -e <iface>: Use specified interface
+  -g/--source-port <portnum>: Use given port number
+  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies
+  --data <hex string>: Append a custom payload to sent packets
+  --data-string <string>: Append a custom ASCII string to sent packets
+  --data-length <num>: Append random data to sent packets
+  --ip-options <options>: Send packets with specified ip options
+  --ttl <val>: Set IP time-to-live field
+  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA <basename>: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --append-output: Append to rather than clobber specified output files
+  --resume <filename>: Resume an aborted scan
+  --noninteractive: Disable runtime interactions via keyboard
+  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir <dirname>: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  nmap -v -A scanme.nmap.org
+  nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
+Scantype v not supported
+
+msf > nmap -sV -sC imsnoida.in
+[*] exec: nmap -sV -sC imsnoida.in
+
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-17 10:37 EST
+Nmap scan report for imsnoida.in (148.135.139.236)
+Host is up (0.010s latency).
+Other addresses for imsnoida.in (not scanned): 2a02:4780:11:1853:0:3742:791d:9
+Not shown: 996 filtered tcp ports (no-response)
+PORT     STATE SERVICE  VERSION
+21/tcp   open  ftp      ProFTPD or KnFTPD
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  ftp
+| ssl-cert: Subject: commonName=*.hstgr.io
+| Subject Alternative Name: DNS:*.hstgr.io, DNS:hstgr.io
+| Not valid before: 2025-09-01T00:00:00
+|_Not valid after:  2026-09-01T23:59:59
+| tls-nextprotoneg: 
+|_  ftp
+80/tcp   open  http     LiteSpeed httpd
+|_http-server-header: LiteSpeed
+|_http-title: Did not follow redirect to https://imsnoida.in/
+443/tcp  open  ssl/http LiteSpeed httpd
+|_ssl-date: TLS randomness does not represent time
+|_http-title:  403 Forbidden
+| tls-alpn: 
+|   h2
+|_  http/1.1
+|_http-server-header: LiteSpeed
+| ssl-cert: Subject: commonName=imsnoida.in
+| Subject Alternative Name: DNS:imsnoida.in, DNS:www.imsnoida.in
+| Not valid before: 2026-01-18T06:38:45
+|_Not valid after:  2026-04-18T06:38:44
+3306/tcp open  mysql    MariaDB 11.8.3
+| ssl-cert: Subject: commonName=*.hstgr.io
+| Subject Alternative Name: DNS:*.hstgr.io, DNS:hstgr.io
+| Not valid before: 2025-09-01T00:00:00
+|_Not valid after:  2026-09-01T23:59:59
+| mysql-info: 
+|   Protocol: 10
+|   Version: 11.8.3-MariaDB-log
+|   Thread ID: 50414259
+|   Capabilities flags: 65534
+|   Some Capabilities: Support41Auth, ConnectWithDatabase, SupportsTransactions, Speaks41ProtocolOld, SwitchToSSLAfterHandshake, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, SupportsCompression, SupportsLoadDataLocal, InteractiveClient, FoundRows, LongColumnFlag, Speaks41ProtocolNew, ODBCClient, DontAllowDatabaseTableColumn, SupportsMultipleStatments, SupportsMultipleResults, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: m`wT"I+:!5'dAY|%?MEP
+|_  Auth Plugin Name: mysql_native_password
+|_ssl-date: TLS randomness does not represent time
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 27.49 seconds
+msf > ftp imsnoida.in
+[*] exec: ftp imsnoida.in
+
+Trying 148.135.139.236:21 ...
+Connected to imsnoida.in.
+220 FTP Server ready.
+Name (imsnoida.in:kali): anoymous
+331 Password required for anoymous
+Password: 
+
+530 Login incorrect.
+ftp: Login failed
+ftp> 
+ftp> exit
+221 Goodbye.
+msf > ftp imsnoida.in
+[*] exec: ftp imsnoida.in
+
+Trying 148.135.139.236:21 ...
+Connected to imsnoida.in.
+220 FTP Server ready.
+Name (imsnoida.in:kali): qwerty
+331 Password required for qwerty
+Password: 
+530 Login incorrect.
+ftp: Login failed
+ftp> 

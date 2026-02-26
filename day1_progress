@@ -1,0 +1,204 @@
+┌──(kali㉿kali)-[~]
+└─$ nmap google.com
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-23 10:41 EST
+
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ ping google.com
+PING google.com (172.217.24.78) 56(84) bytes of data.
+64 bytes from sin10s06-in-f78.1e100.net (172.217.24.78): icmp_seq=1 ttl=255 time=6.82 ms
+64 bytes from sin10s06-in-f78.1e100.net (172.217.24.78): icmp_seq=2 ttl=255 time=8.02 ms
+^C
+--- google.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1045ms
+rtt min/avg/max/mdev = 6.819/7.417/8.015/0.598 ms
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ pwd            
+/home/kali
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ cd desktop
+cd: no such file or directory: desktop
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ cd Desktop
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ pwd
+/home/kali/Desktop
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ mkdir d1
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls
+d1
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ rmdir d1
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ touch file1.txt 
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ leafpad file1.txt
+Command 'leafpad' not found, did you mean:
+  command 'l3afpad' from deb l3afpad
+Try: sudo apt install <deb name>
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls               
+file1.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo apt install leafpad
+[sudo] password for kali: 
+Error: Unable to locate package leafpad
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ leafpad file1.txt
+Command 'leafpad' not found, did you mean:
+  command 'l3afpad' from deb l3afpad
+Try: sudo apt install <deb name>
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ leafpad file1.txt
+Command 'leafpad' not found, did you mean:
+  command 'l3afpad' from deb l3afpad
+Try: sudo apt install <deb name>
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ leafpad test.sh  
+Command 'leafpad' not found, did you mean:
+  command 'l3afpad' from deb l3afpad
+Try: sudo apt install <deb name>
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo apt update         
+Get:1 http://kali.download/kali kali-rolling InRelease [34.0 kB]
+Get:2 http://kali.download/kali kali-rolling/main amd64 Packages [20.7 MB]
+Get:3 http://kali.download/kali kali-rolling/main amd64 Contents (deb) [52.2 MB]
+47% [3 Contents-amd64 9,439 kB/52.2 MB 18%]                    4,720 kB/s 9ss50% [3 Contents-amd64 12.0 MB/52.2 MB 23%]                     4,720 kB/s 8soGet:4 http://kali.download/kali kali-rolling/contrib amd64 Packages [116 kB]
+Get:5 http://kali.download/kali kali-rolling/contrib amd64 Contents (deb) [268 kB]
+Get:6 http://kali.download/kali kali-rolling/non-free amd64 Packages [190 kB]
+Get:7 http://kali.download/kali kali-rolling/non-free amd64 Contents (deb) [905 kB]
+Get:8 http://kali.download/kali kali-rolling/non-free-firmware amd64 Packages [11.8 kB]
+Get:9 http://kali.download/kali kali-rolling/non-free-firmware amd64 Contents (deb) [30.0 kB]
+Fetched 74.5 MB in 19s (3,939 kB/s)                                         
+1473 packages can be upgraded. Run 'apt list --upgradable' to see them.
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo apt install leafpad
+Package leafpad is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+Error: Package 'leafpad' has no installation candidate
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo apt update         
+Hit:1 http://http.kali.org/kali kali-rolling InRelease
+1473 packages can be upgraded. Run 'apt list --upgradable' to see them.
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo apt install mousepad
+mousepad is already the newest version (0.6.5-1).
+mousepad set to manually installed.
+Summary:                    
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 1473
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ mousepad file1.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls             
+file1.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ rm file1.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ touch file1.txt file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls
+file1.txt  file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ mousepad file1.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cat file1.txgt
+cat: file1.txgt: No such file or directory
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cat file1.txt 
+hello these is file 1 content
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cat file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cp file1.txt file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cat file2.txt         
+hello these is file 1 content
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ nano file1.txt 
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cat file1.txt
+hello these is file 1 contentn 
+thi is f1 content after using the nao 8.6
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls                
+file1.txt  file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ mv file1.txt file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls 
+file2.txt
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cat file2.txt
+hello these is file 1 contentn 
+thi is f1 content after using the nao 8.6
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ man ls                
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ 
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ man man
+man: can't resolve man7/groff_man.7
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ hostname
+kali
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ 

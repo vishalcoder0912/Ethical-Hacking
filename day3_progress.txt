@@ -1,0 +1,96 @@
+urrently scanning: 192.168.0.0/16   |   Screen View: Unique Hosts
+                                                   
+ 0 Captured ARP Req/Rep packets, from 0 hosts.   Total size: 0
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+
+                                                    
+┌──(root㉿kali)-[~]
+└─# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+        inet6 fe80::e9a2:b71c:2a76:bd2a  prefixlen 64  scopeid 0x20<link>
+        inet6 fd17:625c:f037:2:3900:b2ab:5ffb:ec05  prefixlen 64  scopeid 0x0<global>
+        ether 08:00:27:79:6d:ad  txqueuelen 1000  (Ethernet)
+        RX packets 54  bytes 7375 (7.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 19973  bytes 1203552 (1.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 8  bytes 480 (480.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 480 (480.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+                                                            
+┌──(root㉿kali)-[~]
+└─# arp-scan -l
+Completing external command
+ar                      arping                
+arch                    arp-scan              
+aria_chk                arpspoof              
+aria_dump_log           arptables             
+aria_ftdump             arptables-nft         
+aria_pack               arptables-nft-restore 
+aria_read_log           arptables-nft-save    
+arj                     arptables-restore     
+arjdisp                 arptables-save        
+arj-register            arptables-translate   
+arp                     arsenic-check-ie11    
+arpd                    arsenic-configure-ie11
+arp-fingerprint         aruba2john            
+Completing parameter
+argv
+┌──(root㉿kali)-[~]
+└─# arp-scan -l      
+Interface: eth0, type: EN10MB, MAC: 08:00:27:79:6d:ad, IPv4: 10.0.2.15
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+10.0.2.2        52:55:0a:00:02:02       (Unknown: locally administered)
+10.0.2.3        52:55:0a:00:02:03       (Unknown: locally administered)
+
+2 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.969 seconds (130.02 hosts/sec). 2 responded
+                                                            
+┌──(root㉿kali)-[~]
+└─# nmap 10.0.2.3
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-25 05:37 EST
+Nmap scan report for 10.0.2.3
+Host is up (0.00013s latency).
+All 1000 scanned ports on 10.0.2.3 are in ignored states.
+Not shown: 999 filtered tcp ports (net-unreach), 1 filtered tcp ports (no-response)
+MAC Address: 52:55:0A:00:02:03 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.52 seconds
+                                                            
+┌──(root㉿kali)-[~]
+└─# nmap 10.0.2.3.0/24
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-25 05:38 EST
+Failed to resolve "10.0.2.3.0".
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.17 seconds
+                                                            
+┌──(root㉿kali)-[~]
+└─# nmap -sV 10.0.2.3 
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-25 05:39 EST
+Nmap scan report for 10.0.2.3
+Host is up (0.00029s latency).
+All 1000 scanned ports on 10.0.2.3 are in ignored states.
+Not shown: 999 filtered tcp ports (net-unreach), 1 filtered tcp ports (no-response)
+MAC Address: 52:55:0A:00:02:03 (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1.67 seconds
+                                                            
+┌──(root㉿kali)-[~]
+└─# nmap -sV -p 10.0.2.3
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-25 05:40 EST
+Error #487: Your port specifications are illegal.  Example of proper form: "-100,200-1024,T:3000-4000,U:60000-"
+QUITTING!
+                                                            
+┌──(root㉿kali)-[~]
+└─#  
