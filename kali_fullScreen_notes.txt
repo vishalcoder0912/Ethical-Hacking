@@ -1,0 +1,189 @@
+
+Uploaded image
+am i doing right seclist or i want to full screen these linux how can i 
+
+Goal: Confirm whether seclists is installing correctly and explain how to make the Kali Linux window full screen.
+
+1. Is seclists installing correctly?
+Yes. The terminal output indicates a normal installation.
+
+Key indicators in your screenshot:
+
+Installing: 1
+
+Get:1 http://kali.download/kali kali-rolling/main amd64 seclists
+
+Download progress like 64.5 MB / 545 MB
+
+This means:
+
+The package is downloading from the Kali repository
+
+Total size is ~545 MB
+
+It will install automatically after the download finishes
+
+So you are doing it correctly. Just wait until it reaches 100%. ✅
+
+Typical install command (for reference):
+
+sudo apt update
+sudo apt install seclists
+After installation you will find it at:
+
+/usr/share/seclists
+2. How to make Kali Linux full screen
+This depends on whether you are using VirtualBox or VMware.
+
+If using VirtualBox
+Press:
+
+Right Ctrl + F
+or use the menu:
+
+View → Full-screen Mode
+If it does not resize properly, install guest additions:
+
+sudo apt update
+sudo apt install -y build-essential dkms linux-headers-$(uname -r)
+Then in VirtualBox menu:
+
+Devices → Insert Guest Additions CD Image
+Run:
+
+sudo mkdir /media/cdrom
+sudo mount /dev/cdrom /media/cdrom
+sudo sh /media/cdrom/VBoxLinuxAdditions.run
+reboot
+If using VMware
+Press:
+
+Ctrl + Alt + Enter
+Or menu:
+
+View → Full Screen
+If resolution is wrong, install tools:
+
+sudo apt install open-vm-tools-desktop
+reboot
+3. Quick check after seclists installs
+Run:
+
+ls /usr/share/seclists
+You should see folders like:
+
+Discovery
+Passwords
+Usernames
+Web-Shells
+Fuzzing
+✅ If you want, I can also show you 5 very useful SecLists commands for bug bounty and penetration testing.
+
+
+Uploaded image
+am i doing it right
+
+Goal: Verify whether your current step in installing VirtualBox Guest Additions is correct.
+
+Current Status
+Yes—your steps are mostly correct. The prompt shows:
+
+You navigated to
+/run/media/kali/VBox_GAs_7.1.10
+
+You switched to root using sudo su
+
+Your terminal prompt changed to root@kali
+
+That indicates the Guest Additions ISO is mounted correctly.
+
+The message:
+
+zsh: corrupt history file /root/.zsh_history
+is not critical. It only means the root shell history file is damaged. It does not affect the installation.
+
+Next Required Step
+You still need to run the VirtualBox Guest Additions installer.
+
+Execute:
+
+sh VBoxLinuxAdditions.run
+or explicitly:
+
+sudo sh VBoxLinuxAdditions.run
+You should see the installer compile kernel modules.
+
+After Installation
+Reboot the VM:
+
+reboot
+Then Enable Full Screen
+Inside VirtualBox press:
+
+Right CTRL + F
+or go to:
+
+View → Full Screen Mode
+Your Kali desktop should automatically resize.
+
+Optional (Fix the history warning)
+If you want to remove the warning:
+
+rm /root/.zsh_history
+It will regenerate automatically.
+
+If you want, I can also show 3 settings that make Kali run much faster in VirtualBox (most people miss them). 🚀
+
+
+Uploaded image
+
+Goal: Determine the correct action when the installer reports that VirtualBox Guest Additions are already installed.
+
+What the message means
+Your system already contains a version of VirtualBox Guest Additions.
+
+The installer is asking whether you want to replace the existing version.
+
+This is normal and not an error.
+
+What you should do
+Type:
+
+yes
+Then press Enter.
+
+The installer will:
+
+Remove the old Guest Additions
+
+Install the new version (7.1.10)
+
+Build kernel modules
+
+After installation finishes
+Restart the system:
+
+reboot
+Enable full screen afterward
+Inside Oracle VM VirtualBox press:
+
+Right Ctrl + F
+or use:
+
+View → Full-screen Mode
+Your Kali desktop should automatically resize.
+
+About the strange characters
+The ^[ [ B characters visible in the terminal come from pressing arrow keys during the prompt. They are harmless.
+
+If you want, I can also show the 3 settings that make Kali run much smoother in VirtualBox (most beginners miss them). 🚀
+
+Do you like this personality?
+
+
+
+
+
+
+
+
